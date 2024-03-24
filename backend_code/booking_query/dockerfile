@@ -1,0 +1,17 @@
+FROM python
+COPY . /
+
+RUN pip3 install boto3
+RUN pip3 install pyjwt -t .
+RUN pip3 install fastapi
+RUN pip3 install uvicorn
+
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install curl -y
+
+ENV bookingTableName=Booking
+ENV hotelOrderDomainTableName=HotelOrderDomain
+
+EXPOSE 80
+ENTRYPOINT [ "python", "Booking-Query.py" ]

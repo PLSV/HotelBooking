@@ -1,0 +1,25 @@
+FROM python:3.9
+COPY . /
+
+RUN pip3 install --upgrade pip
+
+RUN pip3 install requests
+RUN pip3 install fastapi
+RUN pip3 install fastapi_responses
+RUN pip3 install uvicorn
+RUN pip3 install elasticsearch
+RUN pip install elasticsearch_dsl
+RUN pip install pybreaker
+
+RUN apt update -y
+RUN apt upgrade -y
+RUN apt install curl -y
+
+EXPOSE 80
+
+ENV host=https://search-hotels-njksrj24l6lmsmrtr62fzkh6lu.aos.us-east-2.on.aws
+ENV userName=elastic-pavan
+ENV password=V@5@n7!ch!z0ku
+ENV indexName=hotels
+
+ENTRYPOINT [ "python" ,"SearchApi.py"]
